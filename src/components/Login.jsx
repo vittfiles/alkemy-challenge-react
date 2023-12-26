@@ -2,7 +2,7 @@ import axios from "axios";
 import Modal from "./Modal";
 import { useModal } from "./useModal";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Login() {
   const [isOpenModal, openModal, closeModal] = useModal(false);
@@ -60,6 +60,9 @@ function Login() {
   const handleClose = (e) => {
     closeModal();
   };
+
+  let token = sessionStorage.getItem("token");
+  if (token) return <Navigate to="/listado" />;
 
   return (
     <section className="max-w-[350px] mx-auto bg-dark self-center pt-5 pb-6 px-6 rounded-lg">

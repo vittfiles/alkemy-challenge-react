@@ -15,7 +15,11 @@ export default {
       fontFamily: {
         primary: "Montserrat-Regular",
         secondary: "Montserrat-Bold"
-      }
+      },
+      
+      screens: {
+        'xs': '480px',
+      },
     },
   },
   plugins: [],

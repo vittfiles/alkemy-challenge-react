@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="flex-1 flex ">
+      <main className="flex-1 flex justify-center">
         <Outlet />
       </main>
       <Footer />
