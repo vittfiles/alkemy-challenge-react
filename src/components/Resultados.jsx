@@ -1,33 +1,38 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MovieCard from "./MovieCard";
-import { useModal } from "./useModal";
 import Modal from "./Modal";
-import Loader from "./Loader";
 import ProtectedPath from "./ProtectedPath";
+import { useModal } from "./useModal";
+import Loader from "./Loader";
+import MovieCard from "./MovieCard";
+import { useLocation } from "react-router-dom";
 
-function Listado() {
-  const [movieList, setMovieList] = useState(null);
+function Resultados() {
   const [message, setMessage] = useState("");
   const [isOpenModal, openModal, closeModal] = useModal(false);
-  //771093c003e693cc55f3d6a5bb31d059
+  const [movieList, setMovieList] = useState(null);
+
+  let location = useLocation();
+  let query = new URLSearchParams(location.search);
+  let search = query.get("search");
+
   const access =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NzEwOTNjMDAzZTY5M2NjNTVmM2Q2YTViYjMxZDA1OSIsInN1YiI6IjY1OGFkZWY1NWFiYTMyNjhmMWI5MTkyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SQ6HFxx4ALfoYvKHTHMvCa7YqEnR4lR79A_zL328mQ8";
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-    if (token && !movieList) {
+    if (token && search) {
       const endPoint =
-        "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es&page=1&sort_by=popularity.desc";
+        "https://api.themoviedb.org/3/search/movie?include_adult=false&language=es&page=1&query=";
 
       const config = {
         headers: { Authorization: "Bearer " + access },
       };
       axios
-        .get(endPoint, config)
+        .get(endPoint + search, config)
         .then((res) => {
           setMovieList(res.data.results);
-          console.log(movieList);
+          console.log(res.data.results);
         })
         .catch((err) => {
           setMessage(
@@ -36,11 +41,12 @@ function Listado() {
           openModal();
         });
     }
-  }, []);
+  }, [search]);
 
   return (
     <ProtectedPath>
       <section className="w-full max-w-[960px] mx-auto flex flex-wrap content-start p-6">
+        <h1 className="w-full font-secondary text-xl">Resultados : {search}</h1>
         {movieList
           ? movieList.map((movie) => (
               <MovieCard
@@ -67,4 +73,4 @@ function Listado() {
   );
 }
 
-export default Listado;
+export default Resultados;

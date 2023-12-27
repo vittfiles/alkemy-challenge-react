@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 function MovieCard({ id, poster_path, vote_average, title }) {
   return (
     <NavLink
-      to={"/detalles?movieId=" + id}
+      to={"/detalles/" + id}
       className="w-full xs:w-1/2 md:w-1/3 lg:w-1/4 flex p-3 mb-5 group"
     >
       <article className="flex flex-col">
-        <span className="width-full font-secondary text-center border-white border-solid border-2 group-hover:text-blue-400 group-hover:border-blue-400">
+        <span className="w-full font-secondary text-center border-white border-solid border-2 group-hover:text-blue-400 group-hover:border-blue-400">
           VER DETALLES
         </span>
         <figure className="relative">

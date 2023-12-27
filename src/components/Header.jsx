@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import Buscador from "./Buscador";
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -18,14 +19,15 @@ function Header() {
   }, []);
 
   return (
-    <header className="relative w-full flex justify-between flex-wrap content-center bg-dark p-4 z-[50] sticky top-0">
-      <h1 className="block flex-1 px-2 font-secondary text-white text-2xl self-center">
+    <header className="relative w-full flex justify-center flex-wrap content-center bg-dark p-4 z-[50] sticky top-0">
+      <h1 className="order-0 flex flex-1 px-2 font-secondary text-white text-2xl self-center">
         <span>CUEVAN</span>
         <span className="text-blue-300">ARG</span>
       </h1>
+      <Buscador width={width} />
       <button
         onClick={() => setOpen(!open)}
-        className="sm:hidden rounded-lg border-2 border-white border-solid mx-2 hover:border-blue-300 p-2 group"
+        className="order-2 sm:hidden rounded-lg border-2 border-white border-solid mx-2 hover:border-blue-300 p-2 group"
       >
         {!open ? (
           <svg
