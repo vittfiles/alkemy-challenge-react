@@ -22,20 +22,21 @@ function Buscador({ width }) {
     setSlash("");
   };
   const handleChange = (e) => {
-    setSearch(e.target.value.trim());
+    setSearch(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (search.length === 0) {
+    let keywords = search.trim();
+    if (keywords.length === 0) {
       setMessage("ingresa texto para buscar por título");
       openModal();
-    } else if (search.length < 3) {
+    } else if (keywords.length < 3) {
       setMessage("ingresa al menos 4 caracteres");
       openModal();
     } else {
       setSearch("");
       e.target.value = "";
-      navigate("/resultados?search=" + search);
+      navigate("/resultados?search=" + keywords);
     }
   };
   return (
@@ -43,7 +44,7 @@ function Buscador({ width }) {
       {width < limit && !open && (
         <button
           onClick={() => setOpen(true)}
-          className="order-1 w-[40px] p-[8px] sm:hidden rounded-lg border-2 border-white border-solid mx-2 hover:border-blue-300 p-2 group"
+          className="order-1 w-[40px] p-[8px] sm:hidden rounded-lg border-2 border-white border-solid mx-1 sm:mx-2 hover:border-blue-300 p-2 group"
         >
           <svg
             className="fill-white group-hover:fill-blue-300"

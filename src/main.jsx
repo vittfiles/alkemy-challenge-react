@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Listado from "./components/Listado";
 import Detalles from "./components/Detalles.jsx";
 import Resultados from "./components/Resultados.jsx";
+import Favoritos from "./components/Favoritos.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="listado" element={<Listado />} />
           <Route path="detalles/:id" element={<Detalles />} />
           <Route path="resultados" element={<Resultados />} />
+          <Route path="favoritos" element={<Favoritos />} />
           <Route path="*" element={<Login />} />
         </Route>
       </Routes>

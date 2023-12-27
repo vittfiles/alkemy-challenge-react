@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import NavItem from "./NavItem";
 
-function Navbar({ open }) {
+function Navbar({ open, setOpen }) {
   const links = [];
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ function Navbar({ open }) {
     if (token) {
       sessionStorage.removeItem("token");
       navigate("/");
+      setOpen(false);
     }
   };
 
@@ -30,12 +31,12 @@ function Navbar({ open }) {
     >
       <ul className={open ? "flex flex-col justify-center" : "flex"}>
         {links.map((link, index) => (
-          <NavItem key={index} link={link} open={open} />
+          <NavItem key={index} link={link} open={open} setOpen={setOpen} />
         ))}
         {token && (
-          <li className="flex font-secondary rounded-lg border-2 border-white border-solid mx-2 hover:border-blue-300">
+          <li className="flex font-secondary">
             <button
-              className="font-bold py-1 px-2 hover:text-blue-300"
+              className="font-bold py-1 px-2 hover:text-blue-300 w-full rounded-lg border-2 border-white border-solid ml-2 hover:border-blue-300"
               onClick={handleClick}
             >
               Salir

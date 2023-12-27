@@ -1,4 +1,10 @@
+import { useState } from "react";
+import FavoritosBoton from "./FavoritosBoton";
+
 function DetallesMovie({ movie }) {
+  const [open, setOpen] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+
   let release_date = movie?.release_date;
   let date = new Date(release_date);
   let year = date.getFullYear();
@@ -10,16 +16,14 @@ function DetallesMovie({ movie }) {
           src={"https://image.tmdb.org/t/p/original/" + movie?.poster_path}
           alt=""
         />
-        <button className="w-full px-4 py-2 font-secondary text-center border-white border-solid border-2 hover:text-blue-400 hover:border-blue-400">
-          Agragar a favoritos
-        </button>
+        <FavoritosBoton movie={movie} />
       </figure>
       <div className="sm:pl-8 w-full sm:w-[calc(100%-200px)]">
         <h2 className="font-secondary text-3xl mb-5">{movie?.title}</h2>
         <div className="flex justify-start text-blue-300 opacity-[.6]">
           <time
             className="border-blue-300 border-solid border-2 px-2 py-1 rounded-lg font-secondary text-sm mr-2"
-            datetime={release_date}
+            dateTime={release_date}
           >
             {year}
           </time>
@@ -34,24 +38,24 @@ function DetallesMovie({ movie }) {
           {lang?.lenght < 0 ? "Lenguajes " : "Lenguaje "}:
           {lang?.map((l, index) => {
             return (
-              <>
-                {index > 0 && ","}
-                <span> {l.name}</span>
-              </>
+              <span key={index}>
+                {index > 0 && ","} {l.name}
+              </span>
             );
           })}
+          .
         </p>
         <p className="font-primary text-xs pb-4">
           Psinopsis : {movie?.overview}
         </p>
         <div className="font-primary text-xs">
           Generos :{" "}
-          {movie?.genres?.map((g, index) => {
+          {movie?.genres?.map((g, index, array) => {
             return (
-              <>
-                {index > 0 && ","}
-                <span className="font-secondary ml-2">{g.name}</span>
-              </>
+              <span key={index} className="font-secondary ml-2">
+                {g.name}
+                {index < array.length - 1 && array.length > 0 && ","}
+              </span>
             );
           })}
           .
