@@ -5,29 +5,40 @@ import { useModal } from "./useModal";
 import Modal from "./Modal";
 import Loader from "./Loader";
 import ProtectedPath from "./ProtectedPath";
+import Pagination from "./Pagination";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Listado() {
   const [movieList, setMovieList] = useState(null);
   const [message, setMessage] = useState("");
   const [isOpenModal, openModal, closeModal] = useModal(false);
-  //771093c003e693cc55f3d6a5bb31d059
+  const [totalPages, setTotalPages] = useState(1);
+
+  let navigate = useNavigate();
+
+  let location = useLocation();
+  let query = new URLSearchParams(location.search);
+  let currentPage = query.get("page") || 1;
+  console.log(currentPage);
+
   const access =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NzEwOTNjMDAzZTY5M2NjNTVmM2Q2YTViYjMxZDA1OSIsInN1YiI6IjY1OGFkZWY1NWFiYTMyNjhmMWI5MTkyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SQ6HFxx4ALfoYvKHTHMvCa7YqEnR4lR79A_zL328mQ8";
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-    if (token && !movieList) {
+    if (token) {
       const endPoint =
-        "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es&page=1&sort_by=popularity.desc";
+        "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es&sort_by=popularity.desc&page=";
 
       const config = {
         headers: { Authorization: "Bearer " + access },
       };
       axios
-        .get(endPoint, config)
+        .get(endPoint + currentPage, config)
         .then((res) => {
           setMovieList(res.data.results);
-          console.log(movieList);
+          setTotalPages(res.data.total_pages);
+          console.log(res.data);
         })
         .catch((err) => {
           setMessage(
@@ -36,7 +47,12 @@ function Listado() {
           openModal();
         });
     }
-  }, []);
+  }, [currentPage]);
+
+  const updatePage = (newPage) => {
+    setMovieList(null);
+    navigate("/listado?page=" + newPage);
+  };
 
   return (
     <ProtectedPath>
@@ -62,6 +78,11 @@ function Listado() {
             {message}
           </Modal>
         )}
+        <Pagination
+          currentPage={currentPage}
+          updatePage={updatePage}
+          totalPages={totalPages}
+        />
       </section>
     </ProtectedPath>
   );

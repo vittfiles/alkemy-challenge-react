@@ -66,6 +66,11 @@ function Login() {
 
   return (
     <section className="max-w-[350px] mx-auto bg-dark self-center pt-5 pb-6 px-6 rounded-lg">
+      <h1 className="w-full font-secondary text-sm pb-4">
+        Ingresar con: <br />
+        Usuario: challenge@alkemy.org <br />
+        Contraseña: react
+      </h1>
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <label htmlFor="user" className="flex items-center mb-2 font-secondary">
           <svg

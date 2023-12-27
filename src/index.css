@@ -10,3 +10,11 @@
     font-family: Montserrat-Regular;
     src: url("fonts/Montserrat-Regular.ttf");
 }
+
+.page-item a.page-link,.page-item .page-link,
+.pagination .page-item.disabled .page-link,
+.page-item.active .page-link{
+    background-color: #0A0B0D;
+    color: white;
+    border-width: 2px;
+}

@@ -27,6 +27,7 @@ function FavoritosBoton({ mini = false, movie }) {
     <>
       {mini ? (
         <button
+          aria-label={find ? "quitar de favoritos" : "agregar a favoritos"}
           onClick={handleClick}
           className="absolute top-[5px] left-[5px] bg-ultra-alfa rounded-[50%] p-2"
         >
