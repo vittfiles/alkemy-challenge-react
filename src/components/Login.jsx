@@ -37,7 +37,7 @@ function Login() {
       setLoading(true);
       setMessage("cargando los datos");
       openModal();
-      axios
+      /* axios
         .post("http://challenge-react.alkemy.org", { email, password })
         .then((res) => {
           console.log(res.data.token);
@@ -52,7 +52,14 @@ function Login() {
           console.log({ email, password });
           setLoading(false);
           setMessage(" ERROR verifique su usuario y contraseña");
-        });
+        }); */
+      setTimeout(() => {
+        let token = "askdflkasdjfkaoitbhartihaijsñlkfj";
+        sessionStorage.setItem("token", token);
+        setLoading(false);
+        setMessage("datos enviados correctamente");
+        navigate("/listado");
+      }, 1000);
     } else {
       navigate("/listado");
     }
@@ -67,9 +74,7 @@ function Login() {
   return (
     <section className="max-w-[350px] mx-auto bg-dark self-center pt-5 pb-6 px-6 rounded-lg">
       <h1 className="w-full font-secondary text-sm pb-4">
-        Ingresar con: <br />
-        Usuario: challenge@alkemy.org <br />
-        Contraseña: react
+        Ingresar con cualquier usuario y contraseña
       </h1>
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <label htmlFor="user" className="flex items-center mb-2 font-secondary">
