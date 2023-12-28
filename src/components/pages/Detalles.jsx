@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import axios from "axios";
-import { useModal } from "./useModal";
-import Modal from "./Modal";
-import DetallesMovie from "./DetallesMovie";
-import Loader from "./Loader";
+import { useModal } from "../useModal";
+import Modal from "../Modal";
+import DetallesMovie from "../DetallesMovie";
+import Loader from "../Loader";
 
 function Detalles() {
   const [message, setMessage] = useState("");

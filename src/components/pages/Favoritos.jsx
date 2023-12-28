@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import MovieCard from "./MovieCard";
-import ProtectedPath from "./ProtectedPath";
-import FavoritosContext from "./FavoritosContext";
+import MovieCard from "../MovieCard";
+import ProtectedPath from "../ProtectedPath";
+import FavoritosContext from "../FavoritosContext";
 
 function Favoritos() {
   const { favoritos } = useContext(FavoritosContext);

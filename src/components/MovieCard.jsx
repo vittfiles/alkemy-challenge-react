@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import FavoritosBoton from "./FavoritosBoton";
+import ImageIcon from "./icons/ImageIcon";
 
 function MovieCard({ id, poster_path, vote_average, title }) {
   let movie = { id, poster_path, vote_average, title };
@@ -12,11 +13,15 @@ function MovieCard({ id, poster_path, vote_average, title }) {
         VER DETALLES
       </NavLink>
       <figure className="relative">
-        <img
-          src={"https://image.tmdb.org/t/p/original/" + poster_path}
-          alt="no se encontro"
-          className="w-full"
-        />
+        {poster_path ? (
+          <img
+            src={"https://image.tmdb.org/t/p/original/" + poster_path}
+            alt="no se encontro"
+            className="w-full"
+          />
+        ) : (
+          <ImageIcon />
+        )}
 
         <p className="absolute bottom-[5px] text-xs right-[10px] px-2 py-1 rounded-xl bg-blue-600 font-secondary">
           Puntaje: {vote_average}

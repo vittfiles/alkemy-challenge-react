@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Modal from "./Modal";
-import ProtectedPath from "./ProtectedPath";
-import { useModal } from "./useModal";
-import Loader from "./Loader";
-import MovieCard from "./MovieCard";
+import Modal from "../Modal";
+import ProtectedPath from "../ProtectedPath";
+import { useModal } from "../useModal";
+import Loader from "../Loader";
+import MovieCard from "../MovieCard";
 import { useLocation, useNavigate } from "react-router-dom";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination";
 
 function Resultados() {
   const [message, setMessage] = useState("");

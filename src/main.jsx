@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Listado from "./components/Listado";
-import Detalles from "./components/Detalles.jsx";
-import Resultados from "./components/Resultados.jsx";
-import Favoritos from "./components/Favoritos.jsx";
+import Login from "./components/pages/Login";
+import Listado from "./components/pages/Listado.jsx";
+import Detalles from "./components/pages/Detalles.jsx";
+import Resultados from "./components/pages/Resultados.jsx";
+import Favoritos from "./components/pages/Favoritos.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

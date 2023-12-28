@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import NavItem from "./NavItem";
+import { useContext } from "react";
+import UserContext from "./UserContext";
 
 function Navbar({ open, setOpen }) {
+  const { setUser } = useContext(UserContext);
   const links = [];
   const navigate = useNavigate();
 
@@ -16,6 +19,7 @@ function Navbar({ open, setOpen }) {
   const handleClick = (e) => {
     if (token) {
       sessionStorage.removeItem("token");
+      setUser(false);
       navigate("/");
       setOpen(false);
     }

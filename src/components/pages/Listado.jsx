@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MovieCard from "./MovieCard";
-import { useModal } from "./useModal";
-import Modal from "./Modal";
-import Loader from "./Loader";
-import ProtectedPath from "./ProtectedPath";
-import Pagination from "./Pagination";
+import MovieCard from "../MovieCard";
+import { useModal } from "../useModal";
+import Modal from "../Modal";
+import Loader from "../Loader";
+import ProtectedPath from "../ProtectedPath";
+import Pagination from "../Pagination";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Listado() {
